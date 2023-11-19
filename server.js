@@ -1,8 +1,7 @@
-require("dotenv").config();
+// require("dotenv").config();
 
-// mongodb connect
-const connectDB = require("./connectDB/connectDB");
-connectDB(process.env.MONGO_URI);
+// const connectDB = require("./connectDB/connectDB");
+// connectDB(process.env.MONGO_URI);
 
 const express = require("express");
 const PORT = process.env.PORT || 3000;
@@ -14,6 +13,8 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.get("/" , (req, res) => res.send("sahith"));
 
 app.use("api/chat", chatRoutes)
 
@@ -32,8 +33,6 @@ io.on("connection", (socket) => {
     socket.on("message", (messObj) => {
         socket.broadcast.emit("messageBackFromServer" , messObj)
     })
-    // socket.on("newJoin" , socket.id)
-    // socket.emit("messageBackFromServer" )
 })
 
 server.listen(PORT, () => console.log("Sever running on port :", PORT));
