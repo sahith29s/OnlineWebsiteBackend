@@ -1,4 +1,4 @@
-// require("dotenv").config();
+require("dotenv").config();
 
 const connectDB = require("./connectDB/connectDB");
 connectDB(process.env.MONGO_URI);
@@ -10,13 +10,17 @@ const http = require("http");
 const chatRoutes = require("./routes/chatRoutes");
 const { Server } = require("socket.io");
 const cors = require("cors");
+const userRoutes = require("./routes/userRoutes")
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use("/api/chat", chatRoutes);
+app.use("/api/user",  userRoutes);
+
 app.get("/" , (req, res) => res.send("sahith"));
 
-app.use("api/chat", chatRoutes)
 
 const server = http.createServer(app);
 
