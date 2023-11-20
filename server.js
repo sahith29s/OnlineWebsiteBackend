@@ -1,7 +1,7 @@
 // require("dotenv").config();
 
-// const connectDB = require("./connectDB/connectDB");
-// connectDB(process.env.MONGO_URI);
+const connectDB = require("./connectDB/connectDB");
+connectDB(process.env.MONGO_URI);
 
 const express = require("express");
 const PORT = process.env.PORT || 3000;
