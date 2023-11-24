@@ -20,7 +20,7 @@ const createUser = async (req, res) => {
         }
     }
     catch (error) {
-        res.json({ message: "something went wrong" });
+        res.json(error);
     };
 }
 
@@ -33,7 +33,7 @@ const LoginUser = async (req, res) => {
             const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
             console.log(token);
             res.cookie("token", token);
-            res.status(200).json([ user , token ]);
+            res.status(200).json([user, token]);
         }
         else {
             res.status(404).json({ message: "User not found please sign up first" });
