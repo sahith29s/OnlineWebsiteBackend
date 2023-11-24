@@ -1,5 +1,6 @@
 const userModel = require("../models/userModel");
 const jwt = require("jsonwebtoken");
+const { use } = require("../routes/chatRoutes");
 
 const createUser = async (req, res) => {
     try {
@@ -34,9 +35,10 @@ const createUser = async (req, res) => {
         console.log("profile ", profile);
         console.log("email ", email);
         console.log("password ", password);
-        const newUser = new userModel({ username, email, password });
-        console.log("Before model" , newUser);
-        await newUser.save();
+        // const newUser = new userModel({ username, email, password });
+        // console.log("Before model" , newUser);
+        // await newUser.save();
+        const newUser = await userModel.create({ username, email, password });
         console.log("Ater model", newUser);
         res.status(201).json(newUser);
         // }
