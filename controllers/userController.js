@@ -5,43 +5,20 @@ const { use } = require("../routes/chatRoutes");
 const createUser = async (req, res) => {
     try {
         const { username, profile, email, password } = req.body;
-        console.log("normal");
-        console.log("username ", username);
-        console.log("profile ", profile);
-        console.log("email ", email);
-        console.log("password ", password);
 
-        // if (await userModel.findOne({ email })) {
-        //     console.log("await findOne");
-        //     console.log("username ", username);
-        //     console.log("profile ", profile);
-        //     console.log("email ", email);
-        //     console.log("password ", password);
-        //     res.status(409).json({ message: "user already created" });
-        //     return;
-        // }
-        // if (profile) {
-        //     console.log("if profile");
-        //     console.log("username ", username);
-        //     console.log("profile ", profile);
-        //     console.log("email ", email);
-        //     console.log("password ", password);
-        //     const newUser = new userModel({ username, profile, email, password });
-        //     await newUser.save();
-        //     res.status(201).json(newUser);
-        // }
-        // else {
-        console.log("username ", username);
-        console.log("profile ", profile);
-        console.log("email ", email);
-        console.log("password ", password);
-        // const newUser = new userModel({ username, email, password });
-        // console.log("Before model" , newUser);
-        // await newUser.save();
+        if (await userModel.findOne({ email })) {
+            res.status(409).json({ message: "user already created" });
+            return;
+        }
+        if (profile) {
+            const newUser = userModel.create({username , profile , email});
+            res.status(201).json(newUser);
+        }
+        else {
         const newUser = await userModel.create({ username, email, password });
         console.log("Ater model", newUser);
         res.status(201).json(newUser);
-        // }
+        }
     }
     catch (error) {
         res.json(error);
