@@ -4,6 +4,11 @@ const jwt = require("jsonwebtoken");
 const createUser = async (req, res) => {
     try {
         const { username, profile, email, password } = req.body;
+            console.log("normal");
+            console.log("username ", username);
+            console.log("profile ", profile);
+            console.log("email ", email);
+            console.log("password ", password);
 
         if (await userModel.findOne({ email })) {
             console.log("await findOne");
