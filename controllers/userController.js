@@ -1,6 +1,5 @@
 const userModel = require("../models/userModel");
 const jwt = require("jsonwebtoken");
-const { use } = require("../routes/chatRoutes");
 
 const createUser = async (req, res) => {
     try {
@@ -11,13 +10,13 @@ const createUser = async (req, res) => {
             return;
         }
         if (profile) {
-            const newUser = userModel.create({username , profile , email});
+            const newUser = userModel.create({ username, password, profile, email });
             res.status(201).json(newUser);
         }
         else {
-        const newUser = await userModel.create({ username, email, password });
-        console.log("Ater model", newUser);
-        res.status(201).json(newUser);
+            const newUser = await userModel.create({ username, email, password });
+            console.log("Ater model", newUser);
+            res.status(201).json(newUser);
         }
     }
     catch (error) {
