@@ -21,7 +21,7 @@ app.use(cookieParser());
 app.use("/api/chat", chatRoutes);
 app.use("/api/user", userRoutes);
 
-app.get("/", (req, res) => res.send("sahith"));
+app.get("/", (req, res) => res.json("sahith"));
 
 
 const server = http.createServer(app);
