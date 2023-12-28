@@ -23,7 +23,6 @@ app.use("/api/user", userRoutes);
 
 app.get("/", (req, res) => res.json("sahith"));
 
-
 const server = http.createServer(app);
 
 const io = new Server(server, {

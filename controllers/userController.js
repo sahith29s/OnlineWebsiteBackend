@@ -27,8 +27,6 @@ const createUser = async (req, res) => {
 const LoginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
-        console.log("email" , email);
-        console.log("password" , password);
         const user = await userModel.findOne({ email });
         if (user && user.password == password) {
             user.password = "";
