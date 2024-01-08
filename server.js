@@ -12,6 +12,7 @@ const chatRoutes = require("./routes/chatRoutes");
 const { Server } = require("socket.io");
 const cors = require("cors");
 const userRoutes = require("./routes/userRoutes")
+const nodeMailerRoutes = require("./routes/nodeMailerRoutes")
 
 app.use(cors());
 app.use(express.json());
@@ -20,6 +21,7 @@ app.use(cookieParser());
 
 app.use("/api/chat", chatRoutes);
 app.use("/api/user", userRoutes);
+app.use("/nodemailer", nodeMailerRoutes);
 
 app.get("/", (req, res) => res.json("sahith"));
 
