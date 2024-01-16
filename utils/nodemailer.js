@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
-require("dotenv").config()
+require("dotenv").config();
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -37,7 +37,5 @@ async function main(fromMail, text , name) {
 
   console.log("Message sent: %s", info.messageId);
 }
-
-main().catch(console.error);
 
 module.exports = { main }
