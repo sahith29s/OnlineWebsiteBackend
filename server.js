@@ -1,4 +1,5 @@
 require("dotenv").config();
+//added after
 
 const connectDB = require("./connectDB/connectDB");
 connectDB(process.env.MONGO_URI);
